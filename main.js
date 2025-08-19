@@ -9,6 +9,28 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('counter', JSON.stringify(counterObject));
     }
 
+
+    const animation = document.getElementById('lottie-birds-animation');
+    const anim = lottie.loadAnimation({
+        container: animation,
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: '../lottie_flying_birds.json'
+    });
+
+    anim.addEventListener('complete', () => {
+        setTimeout(() => {
+            console.log('replay');
+            anim.goToAndPlay(0, true);
+        }, 7500); 
+    });
+
+
+
+
+
+
     render_count_on_page();
 
     const decrementButton = document.getElementById('dec');

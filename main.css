@@ -63,3 +63,17 @@ button{
     overflow-x: hidden;
     font-size: 10vw;
 }
+
+button:active{
+    filter: brightness(75%);
+}
+
+#lottie-birds-animation{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 20vh;
+    width: 100%;
+    border: none;
+    z-index: 999;
+}
