@@ -1,14 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Fredoka:wght@300..700&display=swap');
+
+
 :root{
 
 
 }
 
+*{
+    font-family: 'Cal Sans';
+}
+
+html{
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+h1{
+    font-size: 15vw;
+    margin-top: 5vh;
+    margin-bottom: 20vh;
+}
+
 body{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.control-container{
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
-    border: 2px solid red;
+    height: auto;
+    width: 80%;
+}
+
+p{
+    font-size: 10vw;
+}
+
+button{
+    border-radius: 15px;
+    padding: 2%;
+    height: auto;
+    min-width: 50%;
+    max-width: 80%;
+    overflow-x: hidden;
+    font-size: 10vw;
 }
