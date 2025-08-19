@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderer: 'svg',
         loop: false,
         autoplay: true,
-        path: '../lottie_flying_birds.json'
+        path: '../dash_track/lottie_flying_birds.json'
     });
 
     anim.addEventListener('complete', () => {
