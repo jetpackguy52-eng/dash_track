@@ -104,12 +104,14 @@ const update_local_storage = function(newCount, newDaily, newWeekly, newMonthly)
 
 
 const render_count_on_page = function(){
+    console.log("here");
     let current = JSON.parse(localStorage.getItem('counter'));
 
     const textElement = document.getElementById('counter');
     const daily = document.getElementById('daily');
     const weekly = document.getElementById('weekly');
     const monthly = document.getElementById('monthly');
+    console.log(daily);
 
 
     textElement.textContent = current.thisDash;
