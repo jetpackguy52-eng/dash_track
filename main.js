@@ -43,7 +43,7 @@ const decrement_this_dash_functoinality = function(){
 
 
 const initialize_storage_check = function(){
-    if(!(localStorage.getItem('counter'))){     //* setting count to 10 initially if storage is empty
+    if((localStorage.getItem('counter'))){     //* setting count to 10 initially if storage is empty
         const counterObject = {
             thisDash: 10,
             daily: 0,
