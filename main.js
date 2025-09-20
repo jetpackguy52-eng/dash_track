@@ -2,14 +2,60 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    if(!(localStorage.getItem('counter'))){
+    initialize_storage_check();
+
+    render_count_on_page();
+
+    decrement_this_dash_functoinality();
+
+    reset_this_dash_functionality();
+
+    reset_each_category_functionality();
+
+    birds_animation_functionality();
+
+});
+
+
+const reset_this_dash_functionality = function(){
+    const resetButton = document.getElementById('reset');
+    resetButton.addEventListener('click', () => {
+        if(confirm("Are you sure you want to reset your current dash progress?")){
+            const current = get_current_counts();
+            update_local_storage(10, current.daily, current.weekly, current.monthly);
+            render_count_on_page();
+        }
+    });
+}
+
+
+const decrement_this_dash_functoinality = function(){
+    const decrementButton = document.getElementById('dec');
+    decrementButton.addEventListener('click', () => {
+        const current = get_current_counts();
+        if(current.thisDash >= 1){
+            update_local_storage(current.thisDash - 1, current.daily + 1, current.weekly + 1, current.monthly + 1);
+            render_count_on_page();
+        }
+        
+    });
+}
+
+
+const initialize_storage_check = function(){
+    if(!(localStorage.getItem('counter'))){     //* setting count to 10 initially if storage is empty
         const counterObject = {
-            count: 10
+            thisDash: 10,
+            daily: 0,
+            weekly: 0,
+            monthly: 0
         }
         localStorage.setItem('counter', JSON.stringify(counterObject));
     }
+}
 
 
+const birds_animation_functionality = function(){
     const animation = document.getElementById('lottie-birds-animation');
     const anim = lottie.loadAnimation({
         container: animation,
@@ -26,48 +72,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 7500); 
     });
 
-
-
-
-
-
-    render_count_on_page();
-
-    const decrementButton = document.getElementById('dec');
-    decrementButton.addEventListener('click', () => {
-        const current = get_current_count();
-        update_local_storage(current - 1);
-        render_count_on_page();
-    });
-
-
-    const resetButton = document.getElementById('reset');
-    resetButton.addEventListener('click', () => {
-        update_local_storage(10);
-        render_count_on_page();
-    });
-})
-
-
-
-
-const get_current_count = function(){
-    const current = JSON.parse(localStorage.getItem('counter')).count;
-    return current;
 }
 
 
+const reset_each_category_functionality = function(){
+    const dailyReset = document.getElementById('daily-reset');
+    const weeklyReset = document.getElementById('weekly-reset');
+    const monthlyReset = document.getElementById('monthly-reset');
+    dailyReset.addEventListener("click", () => update_a_single_category("daily"));
+    weeklyReset.addEventListener("click", () =>  update_a_single_category("weekly"));
+    monthlyReset.addEventListener("click", () =>  update_a_single_category("monthly"));
+
+}
 
 
-const update_local_storage = function(newCount){
+const get_current_counts = function(){
+    console.log(localStorage.getItem('counter'));
+    return JSON.parse(localStorage.getItem('counter'));
+}
+
+
+const update_local_storage = function(newCount, newDaily, newWeekly, newMonthly){
     const counterObject = {
-        count: newCount
+        thisDash: newCount,
+        daily: newDaily,
+        weekly: newWeekly,
+        monthly: newMonthly
     }
     localStorage.setItem('counter', JSON.stringify(counterObject));
 }
 
+
 const render_count_on_page = function(){
-    let count = JSON.parse(localStorage.getItem('counter')).count;
+    let current = JSON.parse(localStorage.getItem('counter'));
+
     const textElement = document.getElementById('counter');
-    textElement.textContent = count;
+    const daily = document.getElementById('daily');
+    const weekly = document.getElementById('weekly');
+    const monthly = document.getElementById('monthly');
+
+
+    textElement.textContent = current.thisDash;
+    daily.textContent = current.daily;
+    weekly.textContent = current.weekly;
+    monthly.textContent = current.monthly;
+}
+
+
+const update_a_single_category = function(category){
+    if(confirm("Are you sure about reseting this category?")){
+        const current = JSON.parse(localStorage.getItem("counter"));
+        current[category] = 0;
+    
+        localStorage.setItem("counter", JSON.stringify(current));
+    
+        render_count_on_page();
+    }
 }
