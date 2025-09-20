@@ -107,7 +107,6 @@ const render_count_on_page = function(){
     let current = JSON.parse(localStorage.getItem('counter'));
 
     const textElement = document.getElementById('counter');
-<<<<<<< HEAD
     const daily = document.getElementById('daily');
     const weekly = document.getElementById('weekly');
     const monthly = document.getElementById('monthly');
@@ -130,7 +129,3 @@ const update_a_single_category = function(category){
         render_count_on_page();
     }
 }
-=======
-    textElement.textContent = count;
-}
->>>>>>> b85a48b0feb6f52fb76d29851be05051f6b44d2c
