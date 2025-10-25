@@ -4,10 +4,8 @@
 :root{
 
     --dark-winter: #0b2e33;
-
+    --light-blue: rgb(199,235,255);
     --border-color: rgba(255, 0, 0, 0);
-
-
 }
 
 *{
@@ -128,5 +126,86 @@ h2{
     min-width: 0%;
     overflow-x: hidden;
     font-size: 5.5vw;
+}
 
+.backdrop{
+    background-color: rgba(0,0,0,0.50);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    transition: top 0.5s ease-in-out;
+
+
+}
+
+
+.reset-selection-modal{
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    max-width: 75%;
+    height: auto;
+    max-height: 80%;
+    padding: 5%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: 2px solid var(--border-color);
+    background-color: var(--dark-winter);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+
+    transition: top 0.5s ease-in-out;
+
+}
+
+.hidden{
+    top: -100%;
+}
+
+.button-close-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 95%;
+    height: auto;
+    border: 2px solid var(--border-color);
+    margin-bottom: 2vh;
+}
+.button-close{
+    height: 5vh;
+    background-image: url('close-icon.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.selection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1vh;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    padding-left: 20%;
+    padding-right: 20%;
+    height: auto;
+    width: 40%;
+    border: 3px solid rgb(0,0,0);
+    background-color: var(--light-blue);
+    border-radius: 20px;
+
+
+}
+
+.reset-value{
+    font-size: 8vw;
 }

@@ -16,17 +16,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+const toggle_modal = function(){
+    const backdrop = Array.from(document.getElementsByClassName('backdrop'))[0];
+    const modal = Array.from(document.getElementsByClassName('reset-selection-modal'))[0];
+    backdrop.classList.toggle('hidden');
+    modal.classList.toggle('hidden');
+
+}
+
 
 const reset_this_dash_functionality = function(){
     const resetButton = document.getElementById('reset');
-    resetButton.addEventListener('click', () => {
-        if(confirm("Are you sure you want to reset your current dash progress?")){
-            const current = get_current_counts();
-            update_local_storage(10, current.daily, current.weekly, current.monthly);
-            render_count_on_page();
-        }
-    });
+    resetButton.addEventListener('click', toggle_modal);
+    const closeButton = Array.from(document.getElementsByClassName('button-close'))[0];
+    closeButton.addEventListener('click', toggle_modal);
+    const selections = Array.from(document.getElementsByClassName('selection'));
+    selections.forEach((selection) => {
+        selection.addEventListener('click', () => {
+            
+            if(confirm(`Are you sure you want to reset your current dash progress to ${selection.id}?`)){
+                const current = get_current_counts();
+                const newDashCount = parseInt(selection.id);
+
+                update_local_storage(newDashCount, current.daily, current.weekly, current.monthly);
+                render_count_on_page();
+            }
+            toggle_modal();
+        });
+    })
 }
+
+
 
 
 const decrement_this_dash_functoinality = function(){
